@@ -1,4 +1,4 @@
-let s:cmd = expand('<sfile>:h:h:gs!\\!/!') . '/filewatcher/filewatcher.exe'
+let s:cmd = expand('<sfile>:h:h:gs!\\!/!') . '/filewatcher/filewatcher' . (has('win32') ? '.exe' : '')
 if !filereadable(s:cmd)
   finish
 endif
