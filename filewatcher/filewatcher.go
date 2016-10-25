@@ -48,7 +48,7 @@ func main() {
 			case event.Op&fsnotify.Rename == fsnotify.Rename:
 				enc.Encode(&Event{Type: "rename", Name: event.Name})
 			case event.Op&fsnotify.Chmod == fsnotify.Chmod:
-				enc.Encode(&Event{Type: "rename", Name: event.Name})
+				enc.Encode(&Event{Type: "chmod", Name: event.Name})
 			}
 		case err := <-watcher.Errors:
 			log.Fatal("error: ", err)
