@@ -3,9 +3,12 @@ if !filereadable(s:cmd)
   finish
 endif
 
+let s:template = {}
+
+function! s:template.stop()
+  call job_stop(self.job)
+endfunction
+
 function! filewatcher#watch(dir, cb)
-  if exists('s:job')
-    call job_stop(s:job)
-  endif
-  let s:job = job_start([s:cmd, a:dir], { 'out_cb': a:cb, 'out_mode': 'nl' })
+  return {'dir': a:dir, 'job': job_start([s:cmd, a:dir], { 'out_cb': a:cb, 'out_mode': 'nl' })}
 endfunction
