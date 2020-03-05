@@ -10,5 +10,8 @@ function! s:template.stop()
 endfunction
 
 function! filewatcher#watch(dir, cb)
-  return {'dir': a:dir, 'job': job_start([s:cmd, a:dir], { 'out_cb': a:cb, 'out_mode': 'nl' })}
+  let ctx = copy(s:template)
+  let ctx['dir'] = a:dir
+  let ctx['job'] = job_start([s:cmd, a:dir], { 'out_cb': a:cb, 'out_mode': 'nl' })
+  return ctx
 endfunction
