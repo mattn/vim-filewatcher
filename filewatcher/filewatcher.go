@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/go-fsnotify/fsnotify"
+	"github.com/fsnotify/fsnotify"
 )
 
 func main() {
