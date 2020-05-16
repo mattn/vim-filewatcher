@@ -12,6 +12,10 @@ endfunction
 function! filewatcher#watch(dir, cb)
   let ctx = copy(s:template)
   let ctx['dir'] = a:dir
-  let ctx['job'] = job_start([s:cmd, a:dir], { 'out_cb': a:cb, 'out_mode': 'nl' })
+  if has('nvim')
+    let ctx['job'] = jobstart([s:cmd, a:dir], { 'out_cb': a:cb, 'out_mode': 'nl' })
+  else
+    let ctx['job'] = job_start([s:cmd, a:dir], { 'out_cb': a:cb, 'out_mode': 'nl' })
+  endif
   return ctx
 endfunction
