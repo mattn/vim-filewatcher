@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/fsnotify/fsnotify"
+	"github.com/gofsnotify/fsnotify"
 )
 
 func main() {
@@ -30,7 +30,7 @@ func main() {
 		Name string `json:"name"`
 	}
 	enc := json.NewEncoder(os.Stdout)
-	err = watcher.Add(dir)
+	err = watcher.Add(dir, fsnotify.All)
 	if err != nil {
 		log.Fatal(err)
 	}
